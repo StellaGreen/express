@@ -12,22 +12,13 @@ app.get('/',
   next()
 }, (req, res) => {
   //nous recupérons l'ip source de la requête
-  res.send(`
-  Welcome ${req.ip} to my first express app.
-  You check the exercices of Stella,
-  You have the paths : `+`</br>` + `</br>` +
-  `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-  `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
-  `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-  `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
+  res.send(`<h1>
+  Welcome ${req.ip} to my first express app.</h1>
+  <h2>You check the exercices of Stella,</h2>
+  <h3>You have the paths : </h3></br></br>` +
+  `- 3 others path with hello + random name hello => <h5><a href="/hello">hello</a></h5> `+`</br>` + `</br>` +
+  `- 3 other path with abcd => <h5><a href="/abcde">abcde</a> </h5>`+  `</br>` + `</br>` +
+  `- 3 other path testing work + gestion error random word => <h5><a href="/dragonfly">dragonfly </a> </h5>`)
 })
 
 // POST sur la racine
@@ -41,19 +32,11 @@ app.post('/',
 
 app.route('/book')
   .get(function (req, res) {
-    res.send('Get a random book'+`</br>` + `</br>` +
-    `<a href="/">home</a> `+ `</br>` + `</br>` +
-    `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-    `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-    `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
-    `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-    `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-    `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-    `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
+    res.send('<h2>Get a</h2><h1> random </h1><h2>book</h2>'+`</br>` + `</br>` +
+    `<h4><a href="/">home</a></h4> `+ `</br>` + `</br>` +
     `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
     `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-    `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-    `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
+    `<a href="/RANDOMWORD">RANDOMWORD</a> `)
   })
   .post(function (req, res) {
     res.send('Add a book')
@@ -68,18 +51,10 @@ app.get('/hello',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send('Hello World!'+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
+  res.send('<h1>Hello You !</h1>'+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
   `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
-  `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-  `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
   `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
 })
 
@@ -89,18 +64,10 @@ app.get('/hello/sofiane',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send('Hello Sofiane!'+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
+  res.send('<h1>Hello Sofiane!</h1>'+`</br>` + `</br>` +
+  `<h4><a href="/">home</a></h4> `+ `</br>` + `</br>` +
   `<a href="/hello">hello</a> `+`</br>` + `</br>` +
   `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
-  `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-  `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
   `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
 })
 
@@ -110,18 +77,10 @@ app.get('/hello/franck',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send('Hello Franck!'+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
+  res.send('<h1>Hello Franck!</h1>'+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/hello">hello</a> `+`</br>` + `</br>` +
   `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-  `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
   `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
 })
 
@@ -132,19 +91,11 @@ app.get('/hello/:name',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send(`Hello ${req.params.name}, how are you ?`+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
+  res.send(`<h1>Hello ${req.params.name}, how are you ?</h1>`+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/hello">hello</a> `+`</br>` + `</br>` +
   `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
-  `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-  `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `)
+  `<a href="/hello/franck">hello/franck</a> `)
 })
 
 // route path match acd and abcd
@@ -153,19 +104,11 @@ app.get('/ab?cd',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send('ab?cd'+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
-  `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-  `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
+  res.send('<h1>ab?cd</h1>'+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
   `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
+  `<a href="/abcde">abcde</a> `)
 })
 
 // route path match abcd, abbcd, abbbcd, and so on.
@@ -174,19 +117,11 @@ app.get('/ab+cd',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send('ab+cd'+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
-  `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-  `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
+  res.send('<h1>ab+cd</h1>'+`</br>` + `</br>` +
+  `<h4><a href="/">home</a></h4> `+ `</br>` + `</br>` +
   `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
   `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
+  `<a href="/abcde">abcde</a> `)
 })
 
 // route path will match abcd, abxcd, abRANDOMcd, ab123cd,
@@ -196,19 +131,11 @@ app.get('/ab*cd',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send('ab*cd'+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
-  `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-  `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
+  res.send('<h1>ab*cd</h1>'+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
   `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
+  `<a href="/abcde">abcde</a> `)
 })
 
 // This route path will match /abe and /abcde.
@@ -217,19 +144,11 @@ app.get('/ab(cd)?e',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send('ab(cd)?e'+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
-  `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-  `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
+  res.send('<h1>ab(cd)?e</h1>'+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
   `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
-  `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
+  `<a href="/abRANDOMcd">abRANDOMcd</a> `)
 })
 
 // This route path will match butterfly and dragonfly,
@@ -239,19 +158,11 @@ app.get(/.*fly$/,
     console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
     next()
   }, (req, res) => {
-  res.send('code path : /.*fly$/'+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
-  `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-  `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
-  `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-  `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
+  res.send('<h1>code path : /.*fly$/</h1>'+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
   `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
+  `<a href="/book">book</a> `)
 })
 
 // a route with parameters userId & BookId
@@ -261,19 +172,11 @@ app.get('/users/:userId/books/:bookId',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send(`Book with id ${req.params.bookId} for user with id ${req.params.userId}`+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
-  `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-  `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
-  `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-  `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
+  res.send(`<h1>Book with id ${req.params.bookId} for user with id ${req.params.userId}</h1>`+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
   `<a href="/RANDOMWORD">RANDOMWORD</a> `+ `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `
+  `<a href="/book">book</a> `
   )
 })
 
@@ -283,19 +186,11 @@ app.get('/:random',
   console.log(`The response will be sent by the next function at the ip : ${req.ip}`)
   next()
 }, (req, res) => {
-  res.send(`Hello, you have tap the path : ${req.params.random}, sorry, i don't have create this path, try later !`+`</br>` + `</br>` +
-  `<a href="/">home</a> `+ `</br>` + `</br>` +
-  `<a href="/hello">hello</a> `+`</br>` + `</br>` +
-  `<a href="/hello/sofiane">hello/sofiane</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/franck">hello/franck</a> `+  `</br>` + `</br>` +
-  `<a href="/acd">acd</a> `+  `</br>` + `</br>` +
-  `<a href="/abbbbcd">abbbbcd</a> `+ `</br>` + `</br>` +
-  `<a href="/abRANDOMcd">abRANDOMcd</a> `+  `</br>` + `</br>` +
-  `<a href="/abcde">abcde</a> `+  `</br>` + `</br>` +
+  res.send(`<h2>Hello, you have tap the path : ${req.params.random}, sorry, i don't have create this path, try later !</h2>`+`</br>` + `</br>` +
+  `<h4><a href="/">home</a> </h4>`+ `</br>` + `</br>` +
   `<a href="/dragonfly">dragonfly </a> `+    `</br>` + `</br>` +
   `<a href="/users/14/books/27">users/14/books/27</a> `+   `</br>` + `</br>` +
-  `<a href="/book">book</a> `+ `</br>` + `</br>` +
-  `<a href="/hello/RANDOMNAME ">hello/RANDOMNAME </a> `)
+  `<a href="/book">book</a> `)
 })
 
 // start the server
