@@ -16,9 +16,9 @@ app.get('/',
   Welcome ${req.ip} to my first express app.</h1>
   <h2>You check the exercices of Stella,</h2>
   <h3>You have the paths : </h3></br></br>` +
-  `- 3 others path with hello + random name hello => <h5><a href="/hello">hello</a></h5> `+`</br>` + `</br>` +
-  `- 3 other path with abcd => <h5><a href="/abcde">abcde</a> </h5>`+  `</br>` + `</br>` +
-  `- 3 other path testing work + gestion error random word => <h5><a href="/dragonfly">dragonfly </a> </h5>`)
+  `- 3 others path with hello + random name hello => <h3><a href="/hello">hello</a></h3> `+`</br>` + `</br>` +
+  `- 3 other path with abcd => <h3><a href="/abcde">abcde</a> </h3>`+  `</br>` + `</br>` +
+  `- 3 other path testing work + gestion error random word => <h3><a href="/dragonfly">dragonfly </a> </h3>`)
 })
 
 // POST sur la racine
