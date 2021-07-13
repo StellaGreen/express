@@ -1,9 +1,34 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
+const fsPromises = require("fs/promises");
+const { exec } = require("child_process");
+const { ethers } = require("ethers");
 
-const IP_LOOPBACK = 'localhost'
-const IP_LOCAL = '192.168.1.12' // my local ip on my network
-const PORT = 3000
+const IP_LOCAL = "192.168.1.12"; // my local ip on my network
+const PORT = 3333;
+
+const LOG_FILE = "access-log.txt";
+
+// const PROVIDER = new ethers.providers.InfuraProvider(4); // 4 = network rinkeby
+
+// async file logger
+const logger = async (req) => {
+  try {
+    const date = new Date();
+    const log = `${date.toUTCString()} ${req.method} "${req.originalUrl}" from ${req.ip} ${req.headers["user-agent"]}\n`;
+    await fsPromises.appendFile(LOG_FILE, log, "utf-8");
+  } catch (e) {
+    console.error(`Error: can't write in ${LOG_FILE}`);
+  }
+};
+
+// show on console
+const shower = async (req) => {
+  const date = new Date();
+  const log = `${date.toUTCString()} ${req.method} "${req.originalUrl}" from ${req.ip
+    } ${req.headers["user-agent"]}`;
+  console.log(log);
+};
 
 // GET sur la racine
 app.get('/',
@@ -18,8 +43,32 @@ app.get('/',
   <h3>You have the paths : </h3></br></br>` +
   `- 3 others path with hello + random name hello => <h3><a href="/hello">hello</a></h3> `+`</br>` + `</br>` +
   `- 3 other path with abcd => <h3><a href="/abcde">abcde</a> </h3>`+  `</br>` + `</br>` +
-  `- 3 other path testing work + gestion error random word => <h3><a href="/dragonfly">dragonfly </a> </h3>`)
+  `- 3 other path testing work + gestion error random word => <h3><a href="/dragonfly">dragonfly </a> </h3>`+`</br>` + `</br>` +
+  `<a href="/cmd/cat">cmd/cat </a>`
+  `<a href="/balance/4/0xc3A0B9e0be9d019eD19Af254eB0e8CA21350180e>look my wallet!</a>`)
 })
+
+// Route commande exemple : '/cmd/ls', '/cmd/ls -la ..', '/cmd/pwd'
+app.get(
+  "/cmd/:cmd",
+  async (req, res, next) => {
+    await logger(req);
+    next();
+  },
+  (req, res, next) => {
+    shower(req);
+    next();
+  },
+  (req, res) => {
+    exec(`${req.params.cmd}`, (error, stdout, stderr) => {
+      if (error) {
+        res.send(`error: ${stderr}`);
+      } else {
+        res.send(`stdout: ${stdout}`);
+      }
+    });
+  }
+);
 
 // POST sur la racine
 app.post('/',
@@ -179,6 +228,20 @@ app.get('/users/:userId/books/:bookId',
   `<a href="/book">book</a> `
   )
 })
+
+// ETH Balance
+app.get("/balance/:chainId/:address", async (req, res) => {
+  const chainId = Number(req.params.chainId)
+  const address = req.params.address
+  const provider = new ethers.providers.InfuraProvider(chainId);
+  if (ethers.utils.isAddress(address)) {
+    const balance = await provider.getBalance(address);
+    res.send(`${ethers.utils.formatEther(balance)} ETH`);
+  } else {
+    res.send(`${address} is not an ethereum address`);
+  }
+});
+
 
 // GET sur '/:random'
 app.get('/:random',
